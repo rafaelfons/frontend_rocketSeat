@@ -16,7 +16,7 @@ body{
     -webkit-font-smoothing: antialiased   ;
 }
 
-body, input, buttom {
+body, input, button {
     font-family: Roboto ,sans-serif;
 }
 
