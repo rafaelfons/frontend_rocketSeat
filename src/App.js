@@ -11,15 +11,16 @@ import './Main.css'
 
 function App() {
   const [devs, setDevs] = useState([])
-
   const [latitude, setLatitude] = useState('')
   const [longitude, setLongitude] = useState('')
   const [github_username, setGithub_username ] = useState('')
   const [techs, setTechs] = useState('')
+  
+    
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const {latitude, longitude} = position.coords
+        const {longitude, latitude} = position.coords
 
         setLatitude(latitude)
         setLongitude(longitude)
@@ -33,9 +34,11 @@ function App() {
     )
   }, [])
 
-  useEffect(() => {
+  useEffect((devs) => {
     async function loadDevs() {
       const response = await api.get('/devs')
+
+      
 
       setDevs(response.data)        
       }
@@ -45,7 +48,7 @@ function App() {
   async function handleAddDev(e) {
     e.preventDefault()
 
-    const response = await api.post('/creat', {
+    const response = await api.post('/create', {
       github_username,
       techs,
       latitude,
@@ -54,7 +57,8 @@ function App() {
     setGithub_username('')
     setTechs('')
 
-    setDevs([...devs, response.data])
+    
+    setDevs(...devs, response.data)
   
   }
  
@@ -109,24 +113,21 @@ function App() {
         </form>
       </aside>
      
-     
-     
-     
       <main>
         <ul>
-            {devs.map(dev =>(
+            {devs.map ( dev =>(
               <li key={dev._id} className="dev-item">
               <header>
                 <img src={dev.avatar_url} alt={dev.name} />
                 <div className="user-info">
                   <strong>{dev.name}</strong>
-                  <span>{dev.techs.join(', ')}</span>
+                  <span>{[dev.techs.join(', ')]}</span>
                 </div>
               </header>
               <p>{dev.bio}</p>
               <a href={`https://github.com/${dev.github_username}`}>Acessar perfil GitHub</a>
             </li>  
-          ))}          
+          ))}         
           </ul>
         </main>
       </div>
