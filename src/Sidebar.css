@@ -67,3 +67,21 @@ aside form button[type=submit]:hover{
     background: #6931ca;
 }
 
+aside form button[type=update]{
+    width: 50%;
+    border:0;
+    margin-top: 15px;
+    background: #7d40e7;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+aside form button[type=update]:hover{
+    background: #6931ca;
+}
+
