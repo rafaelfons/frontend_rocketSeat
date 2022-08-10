@@ -22,7 +22,6 @@ function App() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { longitude, latitude } = position.coords
-
         setLatitude(latitude)
         setLongitude(longitude)
       },
@@ -44,7 +43,7 @@ function App() {
    
     loadDevs()
   }, []);
-
+  
   async function handleAddDev(e) {
     e.preventDefault()
     console.log(devs, "DEVS")
@@ -56,9 +55,9 @@ function App() {
     })
     setGithub_username('')
     setTechs('')
-
-    setDevs([...devs, response.data.dev])
-
+    console.log(response)
+    console.log(response.data.message)
+   if(response.data.dev) setDevs([...devs, response.data.dev])
   }
 
   function index(e, dev) {
