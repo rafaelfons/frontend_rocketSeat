@@ -23,8 +23,9 @@ function Modal(props) {
           longitude,
         } )
         console.log(response)    
-        props.loadDevs();    
-      }
+        props.loadDevs(); 
+    }
+      
     
     return (
         <aside className="Modal">

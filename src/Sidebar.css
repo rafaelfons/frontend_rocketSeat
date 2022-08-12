@@ -67,7 +67,7 @@ aside form button[type=submit]:hover{
     background: #6931ca;
 }
 
-aside form button[type=update]{
+aside form button[type=buttonAtt]{
     width: 50%;
     border:0;
     margin-top: 15px;
@@ -81,7 +81,7 @@ aside form button[type=update]{
     transition: background 0.2s;
 }
 
-aside form button[type=update]:hover{
+aside form button[type=buttonAtt]:hover{
     background: #6931ca;
 }
 

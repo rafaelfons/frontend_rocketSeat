@@ -16,7 +16,8 @@ function App() {
   const [longitude, setLongitude] = useState('')
   const [github_username, setGithub_username] = useState('')
   const [techs, setTechs] = useState('')
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
+  
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -46,7 +47,7 @@ function App() {
   
   async function handleAddDev(e) {
     e.preventDefault()
-    console.log(devs, "DEVS")
+    
     const response = await api.post('/create', {
       github_username,
       techs,
@@ -60,15 +61,23 @@ function App() {
    if(response.data.dev) setDevs([...devs, response.data.dev])
   }
 
-  function index(e, dev) {
+
+
+  function index(e, dev){
     e.preventDefault();
-        
+    
     setGithub_username(dev.github_username)
     setTechs(dev.techs)
     setLongitude (dev.location.coordinates[0])
     setLatitude(dev.location.coordinates[1])
     setShow(!show)
   }
+
+  function deleteDev(e, dev) {
+    e.preventDefault()
+    
+  }
+
 
   return (
     <div id="app">
@@ -125,23 +134,26 @@ function App() {
         <ul>
           {devs.map(dev => (
             <li key={dev._id} className="dev-item">
-              <header>
+              <header>                
                 <img src={dev.avatar_url} alt={dev.name} />
                 <div className="user-info">
                   <strong>{dev.name}</strong>
                   <span>{[dev.techs.join(', ')]}</span>
                 </div>
+                <div>
+                  <li className="delete"> <button onClick={e => deleteDev(e, dev)}>APAGAR</button> </li>
+                </div>               
               </header>
               <p>{dev.bio}</p>
               <a href={`https://github.com/${dev.github_username}`}>Acessar perfil GitHub</a>
-              <button onClick={e => index(e, dev)}>Atualizar</button>
+              <li className="buttonAtt"> <button onClick={e => index(e, dev)}>EDITAR</button> </li>
             </li>
           ))}
         </ul>
       </main>
       {
         show ? <Modal github_username={github_username} techs={techs} latitude={latitude} longitude={longitude} loadDevs={loadDevs}></Modal> : <div />
-      }
+      }      
     </div>
   )
 }
