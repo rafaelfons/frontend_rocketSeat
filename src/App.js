@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from './services/api'
-import Modal from './Modal'
+import Modal from './Components/Modal'
+import ModalDelete from './Components/ModalDelete'
 import './global.css'
 import './App.css'
 import './Sidebar.css'
@@ -16,8 +17,13 @@ function App() {
   const [longitude, setLongitude] = useState('')
   const [github_username, setGithub_username] = useState('')
   const [techs, setTechs] = useState('')
+  const [latitudeModal, setLatitudeModal] = useState('')
+  const [longitudeModal, setLongitudeModal] = useState('')
+  const [github_usernameModal, setGithub_usernameModal] = useState('')
+  const [techsModal, setTechsModal] = useState('')
   const [show, setShow] = useState(false)
-  
+  const [del, setDel] = useState(false)
+  const [github_usernameDel, setGithub_usernameDel] = useState('')
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -43,8 +49,8 @@ function App() {
   useEffect(() => {
    
     loadDevs()
-  }, []);
-  
+  }, []);  
+
   async function handleAddDev(e) {
     e.preventDefault()
     
@@ -61,28 +67,26 @@ function App() {
    if(response.data.dev) setDevs([...devs, response.data.dev])
   }
 
-
-
   function index(e, dev){
     e.preventDefault();
     
-    setGithub_username(dev.github_username)
-    setTechs(dev.techs)
-    setLongitude (dev.location.coordinates[0])
-    setLatitude(dev.location.coordinates[1])
     setShow(!show)
+    setGithub_usernameModal(dev.github_username)
+    setTechsModal(dev.techs)
+    setLongitudeModal (dev.location.coordinates[0])
+    setLatitudeModal(dev.location.coordinates[1])        
   }
 
-  function deleteDev(e, dev) {
+  async function deleteDev(e, dev) {
     e.preventDefault()
-    
-  }
-
-
+    setDel(!del)
+    setGithub_usernameDel(dev.github_username)      
+  }  
+ 
   return (
     <div id="app">
-      <aside>
-        <strong>Cadastrar</strong>
+      <aside className="cadastrar">
+        <strong>Cadastrar</strong>      
         <form onSubmit={handleAddDev}>
           <div className='input-block'>
             <label htmlFor="github_username" >Usuário do Github</label>
@@ -129,6 +133,7 @@ function App() {
           <button type="submit">Salvar</button>
         </form>
       </aside>
+      
 
       <main>
         <ul>
@@ -152,8 +157,17 @@ function App() {
         </ul>
       </main>
       {
-        show ? <Modal github_username={github_username} techs={techs} latitude={latitude} longitude={longitude} loadDevs={loadDevs}></Modal> : <div />
-      }      
+        show ? <Modal 
+        github_username={github_usernameModal} 
+        techs={techsModal} 
+        latitude={latitudeModal} 
+        longitude={longitudeModal} 
+        loadDevs={loadDevs}></Modal> : 
+        <div />
+      }   
+      {
+        del ? <ModalDelete github_username={github_usernameDel}></ModalDelete> : <div/>
+      }   
     </div>
   )
 }

@@ -1,17 +1,20 @@
 import React, {useState} from 'react'
-import api from './services/api'
+import api from '../services/api'
 
-import './global.css'
-import './App.css'
-import './Sidebar.css'
-import './Main.css'
+import '../global.css'
+import '../App.css'
+import '../Sidebar.css'
+import '../Main.css'
 
 function Modal(props) {
     const [latitude, setLatitude] = useState(props.latitude)
     const [longitude, setLongitude] = useState(props.longitude)
-    const [github_username, setGithub_username ] = useState(props.github_username)
+    const [github_username, setGithub_username] = useState(props.github_username)
     const [techs, setTechs] = useState(props.techs)
-    console.log(props)
+    console.log(latitude, longitude, github_username, techs)
+
+ 
+   
 
     async function handleUpdate(e) {
         console.log("OK")
@@ -28,7 +31,8 @@ function Modal(props) {
       
     
     return (
-        <aside className="Modal">
+        <div id="modal">
+        <aside className="modal">
             <strong>Atualizar</strong>
             <form onSubmit={handleUpdate}>
                 <div className='input-block'>
@@ -76,6 +80,7 @@ function Modal(props) {
                 <button type="submit">Atualiza</button>
             </form>
         </aside>
+        </div>
     )
 }
 
