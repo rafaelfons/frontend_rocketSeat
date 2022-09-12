@@ -68,12 +68,12 @@ aside form button[type=submit]:hover{
 }
 
 aside form button[type=buttonAtt]{
-    width: 50%;
+    width: 100%;
     border:0;
     margin-top: 15px;
     background: #7d40e7;
     border-radius: 4px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
@@ -87,9 +87,10 @@ aside form button[type=buttonAtt]:hover{
 
 aside form button[type=delete]{
     width: 50%;
-    border:0;
+    border:0;    
     margin-top: 15px;
-    background: #7d40e7;
+    margin-left: 140px;
+    background: #ee6565;
     border-radius: 4px;
     padding: 10px 20px;
     font-size: 16px;
@@ -100,6 +101,44 @@ aside form button[type=delete]{
 }
 
 aside form button[type=delete]:hover{
-    background: #6931ca;
+    background: #ec5353;
 }
+aside form button[type=submitDel]{
+    width: 50%;
+    border:0; 
+    align-items: center;   
+    margin-top: 15px;   
+    background: #ee6565;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+aside form button[type=submitDel]:hover{
+    background: #ec5353;
+}
+
+aside form button[type=submitNotDel]{
+    width: 50%;
+    border:0; 
+    align-items: center;   
+    margin-top: 15px;     
+    background: #028850;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+aside form button[type=submitNotDel]:hover{
+    background: #015f38;
+}
+
 

@@ -1,20 +1,15 @@
 import React, {useState} from 'react'
 import api from '../services/api'
-
-import '../global.css'
-import '../App.css'
-import '../Sidebar.css'
-import '../Main.css'
+import ModalDelete from './ModalDelete'
 
 function Modal(props) {
     const [latitude, setLatitude] = useState(props.latitude)
     const [longitude, setLongitude] = useState(props.longitude)
     const [github_username, setGithub_username] = useState(props.github_username)
     const [techs, setTechs] = useState(props.techs)
-    console.log(latitude, longitude, github_username, techs)
-
- 
-   
+    const [github_usernameDel, setGithub_usernameDel] = useState('')
+    const [del, setDel] = useState(false)
+    console.log(del)   
 
     async function handleUpdate(e) {
         console.log("OK")
@@ -28,9 +23,15 @@ function Modal(props) {
         console.log(response)    
         props.loadDevs(); 
     }
-      
+
+    async function deleteDev(e, github_username) {
+        e.preventDefault()
+        setDel(!del)
+        setGithub_usernameDel(github_username)      
+      }       
     
     return (
+       
         <div id="modal">
         <aside className="modal">
             <strong>Atualizar</strong>
@@ -42,6 +43,7 @@ function Modal(props) {
                         required
                         value={github_username}
                         onChange={e => setGithub_username(e.target.value)}
+                        disabled
                     />
                 </div>
 
@@ -73,14 +75,25 @@ function Modal(props) {
                             id="longitude"
                             required
                             value={longitude}
-                            onChange={e => setLongitude(e.target.value)}
+                            onChange={e => setLongitude(e.target.value)}                            
                         />
                     </div>
                 </div>
-                <button type="submit">Atualiza</button>
+                <div>
+                    <button type="buttonAtt">Atualiza</button>
+                </div>
+                <div> 
+                    <button type='delete' onClick={e => deleteDev(e,github_username)}>APAGAR</button>
+                </div>               
             </form>
         </aside>
+        {
+        del ? <ModalDelete github_username={github_username}></ModalDelete> : 
+        <div />
+      } 
         </div>
+        
+       
     )
 }
 

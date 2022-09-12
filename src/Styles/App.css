@@ -1,20 +1,14 @@
-#modalDel {
-   position: fixed;
-   max-width: 1200px;
-   margin: 0 auto;
-   padding: 60px 30px;
- 
 
+#modal {
+   position:absolute;
    display: flex;
    flex-direction: row;
    align-items: flex-start;
 }
 
-#modal {
-   position:fixed;
-   display: flex;
-   flex-direction: row;
-   align-items: flex-start;
+#modalDel{
+   position: absolute;
+   margin-top: 10px;
 }
 
 #app {

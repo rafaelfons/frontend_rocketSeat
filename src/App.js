@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import api from './services/api'
 import Modal from './Components/ModalUpdate'
-import ModalDelete from './Components/ModalDelete'
-import './global.css'
-import './App.css'
-import './Sidebar.css'
-import './Main.css'
+
+import './Styles/global.css'
+import './Styles/App.css'
+import './Styles/Sidebar.css'
+import './Styles/Main.css'
 
 
 
@@ -22,8 +22,8 @@ function App() {
   const [github_usernameModal, setGithub_usernameModal] = useState('')
   const [techsModal, setTechsModal] = useState('')
   const [show, setShow] = useState(false)
-  const [del, setDel] = useState(false)
-  const [github_usernameDel, setGithub_usernameDel] = useState('')
+ 
+  
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -76,13 +76,7 @@ function App() {
     setLongitudeModal (dev.location.coordinates[0])
     setLatitudeModal(dev.location.coordinates[1])        
   }
-
-  async function deleteDev(e, dev) {
-    e.preventDefault()
-    setDel(!del)
-    setGithub_usernameDel(dev.github_username)      
-  }  
- 
+  
   return (
     <div id="app">
       <aside className="cadastrar">
@@ -146,7 +140,7 @@ function App() {
                   <span>{[dev.techs.join(', ')]}</span>
                 </div>
                 <div>
-                  <li className="delete"> <button onClick={e => deleteDev(e, dev)}>APAGAR</button> </li>
+                 
                 </div>               
               </header>
               <p>{dev.bio}</p>
@@ -164,10 +158,7 @@ function App() {
         longitude={longitudeModal} 
         loadDevs={loadDevs}></Modal> : 
         <div />
-      }   
-      {
-        del ? <ModalDelete github_username={github_usernameDel}></ModalDelete> : <div/>
-      }   
+      }          
     </div>
   )
 }
