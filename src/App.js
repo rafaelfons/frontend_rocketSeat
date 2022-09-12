@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from './services/api'
-import Modal from './Components/Modal'
+import Modal from './Components/ModalUpdate'
 import ModalDelete from './Components/ModalDelete'
 import './global.css'
 import './App.css'

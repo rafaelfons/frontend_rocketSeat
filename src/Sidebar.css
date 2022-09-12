@@ -85,7 +85,7 @@ aside form button[type=buttonAtt]:hover{
     background: #6931ca;
 }
 
-aside form button[type=buttonAtt]{
+aside form button[type=delete]{
     width: 50%;
     border:0;
     margin-top: 15px;
@@ -99,7 +99,7 @@ aside form button[type=buttonAtt]{
     transition: background 0.2s;
 }
 
-aside form button[type=buttonAtt]:hover{
+aside form button[type=delete]:hover{
     background: #6931ca;
 }
 
